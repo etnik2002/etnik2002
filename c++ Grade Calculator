@@ -1,0 +1,203 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	int perqindjaNgaKollokfiumiPare=0;
+	int perqindjaNgaKollokfiumiDyte=0;
+	int perqindjaNgaProvimi=0;
+	int piketNgaProvimi=0;
+	int piketNgakollokfiumiPare=0;
+	int piketNgakollokfiumiDyte=0;
+	int detyra1=0;
+	int detyra2=0;
+	int d1piket=0;
+	int d2piket=0;
+	int po=1;
+	int jo=0;
+
+	cout << "Piket nga kollokfiumi i pare [0-100]: ";
+	cin >> piketNgakollokfiumiPare;
+
+	if (piketNgakollokfiumiPare < 0 || piketNgakollokfiumiPare > 100 )
+	{
+		cout << "\nPiket jane gabim [0-100]";
+		return 0;
+	}
+
+	else if (piketNgakollokfiumiPare >= 51 && piketNgakollokfiumiPare <= 100)
+	{
+		cout << "\nJu lumte! Mund te vazhdoni ne kollokfiumin e dyte!";
+		perqindjaNgaKollokfiumiPare = (piketNgakollokfiumiPare*35) /100;
+		
+		
+		cout << "\nPiket nga kollokfiumi i dyte [0-100]: ";
+		cin >> piketNgakollokfiumiDyte;
+		
+		if (piketNgakollokfiumiDyte < 0 || piketNgakollokfiumiDyte > 100 )
+		{
+			cout << "\nPiket jane gabim [0-100]";
+			return 0;
+		}
+		
+		else if (piketNgakollokfiumiDyte >= 51 && piketNgakollokfiumiDyte <= 100)
+		{
+			perqindjaNgaKollokfiumiDyte = (piketNgakollokfiumiDyte *35) / 100;
+			
+			cout << "\nJu lumte! Keni kaluar edhe kollokfiumin e dyte dhe nuk duhet te futeni ne provim perfundimtar!";
+		}
+		
+		else
+		{
+			cout << "\nNuk arritet perqindjen e nevojshme prej " << 51 << "%" << " per te kaluar kollokfiumin e dyte!\n"
+			<< "\nDuhet te futeni ne provim perfundimtar!";
+			
+			cout << "\nPiket ne provim [0-100]: ";
+			cin >> piketNgaProvimi;
+			
+			if( piketNgaProvimi < 0 || piketNgaProvimi > 100 )
+			{
+				cout << "\nPiket jane gabim [0-100]";
+				return 0;
+			}
+		}
+	}
+	
+	else
+	{
+		cout << "\nNuk arritet perqindjen e nevojshme prej " << 51 << "%" << " per te kaluar kollokfiumin e pare!\n"
+		<< "\nDuhet te futeni ne provim perfundimtar!";
+		
+		cout << "\nPiket ne provim [0-100]: ";
+		cin >> piketNgaProvimi;
+		
+		perqindjaNgaProvimi = (piketNgaProvimi * 70) / 100;
+	}
+
+	cout << "\na e keni bere detyren e pare? [shtyp 1 nese PO, shtyp 0 nese JO]\n";
+	cin >> detyra1;
+	
+	if (detyra1 == po)
+	{
+		cout <<"\nsa pike keni mare tek detyra e pare? \n";
+		cin>>d1piket;
+		
+		if(d1piket<0 || d1piket>10)
+		{
+			cout << "\nPiket jane gabim [0-10]";
+			return 0; 
+		}
+	}
+	
+	if (detyra1 == jo)
+	{
+		cout <<"\nju keni 0 pike tek detyra e pare";
+	}
+	
+	int d1perqindja;
+	d1perqindja = (d1piket*10) / 10;
+	
+	
+	
+	cout << "\na e keni bere detyren e dyte? [shtyp 1 nese PO, shtyp 0 nese JO]\n";
+	cin >> detyra2;
+	
+	
+	if (detyra2 == po)
+	{
+		cout << "\nsa pike keni mare tek detyra e dyte?\n";
+		cin >> d2piket;
+		
+		if(d2piket < 0 || d2piket > 10)
+		{
+			cout << "\nPiket jane gabim [0-100]";
+			return 0;
+		}
+	}
+	
+	if (detyra2 == jo)
+	{
+		cout << "\nju keni 0 pike tek detyra e dyte";
+	}
+
+	
+	int d2perqindja;
+	d2perqindja = (d2piket*10) / 10;
+	
+	
+	
+	int prezenca=15;
+	int prezencaditet;
+	int prezencaPerqindja;
+	
+	cout << "\nsa dite keni qene prezent [0-15]\n";
+	cin >> prezenca;
+	
+	if(prezenca < 0 || prezenca > 15)
+	{
+		cout << "\nJavet jane gabim [0-15]";
+		return 0;
+	}
+	
+	prezencaPerqindja = (prezenca * 10) / 15;
+	
+	
+	if( piketNgaProvimi > 0 )
+	{
+		cout << "\n\nProvimi" << setw(19) << perqindjaNgaProvimi << "%";
+	}
+	
+	else
+	{
+		cout <<"\n\nKollokfiumi i pare(I)"<<setw(5)<<perqindjaNgaKollokfiumiPare<<"%";
+		cout <<"\nKollokfiumi i dyte(II)"<<setw(4)<<perqindjaNgaKollokfiumiDyte<<"%";
+	}
+	
+	cout <<"\nDetyra 1"<<setw(18)<<d1perqindja<<"%";
+	cout <<"\nDetyra 2"<<setw(18)<<d2perqindja<<"%";
+	cout <<"\nPrezenca"<<setw(18)<<prezencaPerqindja<<"%";
+	
+	int nota=0, gjithsej=0;
+	
+	if( piketNgaProvimi > 0 )
+	gjithsej = perqindjaNgaProvimi + prezencaPerqindja + d1perqindja + d2perqindja;
+	
+	else
+	gjithsej = perqindjaNgaKollokfiumiPare + perqindjaNgaKollokfiumiDyte + prezencaPerqindja + d1perqindja + d2perqindja;
+	
+	if (gjithsej < 51)
+	{
+		nota = 5;
+	}
+	
+	if (gjithsej >= 51 && gjithsej <= 60)
+	{
+		nota = 6;
+	}
+	
+	if (gjithsej >= 61 && gjithsej <= 70)
+	{
+		nota = 7;
+	}
+	
+	if (gjithsej >= 71 && gjithsej <= 80)
+	{
+		nota = 8;
+	}
+	
+	if (gjithsej >= 81 && gjithsej <= 90)
+	{
+		nota = 9;
+	}
+	
+	if (gjithsej >= 91 && gjithsej <= 100)
+	{
+		nota = 10;
+	}
+
+	cout << "\n" << setw( 27 ) << setfill( '-' ) << ""
+	<< "\nGjithsej: " << "             " <<gjithsej << "%" << "          Nota: " << nota; 
+	
+	return 0;
+}
